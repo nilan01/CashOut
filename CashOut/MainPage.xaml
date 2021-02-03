@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CashOut.MainPage"
+             Padding="0, 100, 0, 0"
+             BackgroundColor="WhiteSmoke">
+
+
+    <Grid Padding="10"
+                RowSpacing="4"
+                ColumnSpacing="4"
+        >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="" HorizontalOptions="Center" TextColor="Black" x:Name="number"/>
+        <Button Grid.Row="1" Grid.Column="0" Text="1" TextColor="Black" BackgroundColor="White" BorderRadius="10" Clicked="Number_Clicked"/>
+        <Button Grid.Row="1" Grid.Column="1" Text="2" TextColor="Black" BackgroundColor="White" BorderRadius="10" Clicked="Number_Clicked"/>
+        <Button Grid.Row="1" Grid.Column="2" Text="3" TextColor="Black" BackgroundColor="White" BorderRadius="10" Clicked="Number_Clicked"/>
+        <Label Grid.Row="1" Grid.Column="3" Text="" HorizontalOptions="Center" TextColor="Black" x:Name="total"/>
+
+        <Button Grid.Row="2" Grid.Column="0" Text="4" TextColor="Black" BackgroundColor="White" BorderRadius="10" Clicked="Number_Clicked"/>
+        <Button Grid.Row="2" Grid.Column="1" Text="5" TextColor="Black" BackgroundColor="White" BorderRadius="10" Clicked="Number_Clicked"/>
+        <Button Grid.Row="2" Grid.Column="2" Text="6" TextColor="Black" BackgroundColor="White" BorderRadius="10" Clicked="Number_Clicked"/>
+        <Button Grid.Row="3" Grid.Column="0" Text="7" TextColor="Black" BackgroundColor="White" BorderRadius="10" Clicked="Number_Clicked"/>
+        <Button Grid.Row="3" Grid.Column="1" Text="8" TextColor="Black" BackgroundColor="White" BorderRadius="10" Clicked="Number_Clicked"/>
+        <Button Grid.Row="3" Grid.Column="2" Text="9" TextColor="Black" BackgroundColor="White" BorderRadius="10" Clicked="Number_Clicked"/>
+        <Label Grid.Row="4" Grid.Column="0" Text="1" TextColor="Black" x:Name="quantity"/>
+
+        <Button Grid.Row="4" Grid.Column="1" Text="0" TextColor="Black" BackgroundColor="White" BorderRadius="10" Clicked="Number_Clicked"/>
+        <Button Grid.Row="4" Grid.Column="2" Text="Clear" FontSize="10" TextColor="#28282c" BackgroundColor="#fff" BorderRadius="10" Clicked="Clear_Clicked"/>
+
+        <Button Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" Text="Buy" TextColor="Black" BackgroundColor="Blue" FontSize="Default" Clicked="Button_Clicked"/>
+
+        <ListView x:Name="mylist" Grid.Row="5" Grid.ColumnSpan="4" Grid.RowSpan="3" ItemSelected="mylist_ItemSelected" ItemsSource="{Binding mylist}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding name}" TextColor="Black"   Grid.Column="0"></Label>
+                            <Label Text="{Binding price}"  TextColor="Black"  Grid.Column="0"></Label>
+                            <Label Text="{Binding quantity}"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>
