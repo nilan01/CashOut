@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CashOut.MainPage"
              Padding="0, 100, 0, 0"
-             BackgroundColor="WhiteSmoke">
+             BackgroundColor="WhiteSmoke"
+             Title="Cash Out"
+             NavigationPage.BackButtonTitle="Cash Out">
 
 
     <Grid Padding="10"
@@ -19,6 +21,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
+        <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="1" Text="Manager" TextColor="Black" BackgroundColor="Red" FontSize="Default" Clicked="Manager_Clicked"/>
+
         <Label Grid.Row="0" Grid.ColumnSpan="2" Text="" HorizontalOptions="Center" TextColor="Black" x:Name="number"/>
         <Button Grid.Row="1" Grid.Column="0" Text="1" TextColor="Black" BackgroundColor="White" BorderRadius="10" Clicked="Number_Clicked"/>
         <Button Grid.Row="1" Grid.Column="1" Text="2" TextColor="Black" BackgroundColor="White" BorderRadius="10" Clicked="Number_Clicked"/>
@@ -31,7 +35,7 @@
         <Button Grid.Row="3" Grid.Column="0" Text="7" TextColor="Black" BackgroundColor="White" BorderRadius="10" Clicked="Number_Clicked"/>
         <Button Grid.Row="3" Grid.Column="1" Text="8" TextColor="Black" BackgroundColor="White" BorderRadius="10" Clicked="Number_Clicked"/>
         <Button Grid.Row="3" Grid.Column="2" Text="9" TextColor="Black" BackgroundColor="White" BorderRadius="10" Clicked="Number_Clicked"/>
-        <Label Grid.Row="4" Grid.Column="0" Text="1" TextColor="Black" x:Name="quantity"/>
+        <Label Grid.Row="4" Grid.Column="0" Text="" TextColor="Black" x:Name="quantity"/>
 
         <Button Grid.Row="4" Grid.Column="1" Text="0" TextColor="Black" BackgroundColor="White" BorderRadius="10" Clicked="Number_Clicked"/>
         <Button Grid.Row="4" Grid.Column="2" Text="Clear" FontSize="10" TextColor="#28282c" BackgroundColor="#fff" BorderRadius="10" Clicked="Clear_Clicked"/>

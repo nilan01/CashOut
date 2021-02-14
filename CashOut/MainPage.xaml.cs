@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CashOut.Models;
 using Xamarin.Forms;
 
 namespace CashOut
@@ -13,47 +14,67 @@ namespace CashOut
     {
         int num1, num2;
         string op;
-        ObservableCollection<Product> products;
+        Manager manager = new Manager();
+
+
         public MainPage()
         {
             InitializeComponent();
-            Product hats = new Product("Hat", 30, 25.99);
-            Product pants = new Product("Jeans", 30, 35.99);
-            Product jackets = new Product("Jackets", 40, 255.99);
-            Product shoes = new Product("Shoes", 20, 115.99);
-            Product shirts = new Product("Shirts", 30, 35.99);
-            Product socks = new Product("Socks", 30, 15.99);
+            mylist.ItemsSource = manager.products;
 
-            products = new ObservableCollection<Product>();
-            products.Add(hats);
-            products.Add(pants);
-            products.Add(jackets);
-            products.Add(shoes);
-            products.Add(shirts);
-            products.Add(socks);
-
-            mylist.ItemsSource = products;
+        }
+        public void clearScreen() {
+            quantity.Text = "";
+            total.Text = "";
+            number.Text = "";
         }
         public void Number_Clicked(object sender, EventArgs e) {
             Button digit = (Button)sender;
             double num = Double.Parse(digit.Text);
             quantity.Text += ((Button)sender).Text;
+            //total.Text = Convert.ToString(product.price * Convert.ToDouble(quantity.Text));
         }
         public void Clear_Clicked(object sender, EventArgs e)
         {
-            quantity.Text = "";
-
+            clearScreen();
         }
         private void mylist_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            // This line null checks the object and also gives you a reference
             if (e.SelectedItem is Product product)
             {
                 number.Text = product.name;
+                if (quantity.Text == "")
+                {
+                    quantity.Text = "0";
+                    total.Text = Convert.ToString(product.price * Convert.ToDouble(quantity.Text));
+                }
+                else {
+                    total.Text = Convert.ToString(product.price * Convert.ToDouble(quantity.Text));
+                }
             }
         }
         void Button_Clicked(System.Object sender, System.EventArgs e) {
-            (mylist.SelectedItem as Product).quantity -= Convert.ToInt32(quantity.Text);
+            int newQuantity = (mylist.SelectedItem as Product).quantity - Convert.ToInt32(quantity.Text);
+            if ((mylist.SelectedItem as Product).quantity == 0 || newQuantity < 0)
+            {
+                DisplayAlert("Out of Stock", "More on the way", "OK");
+                clearScreen();
+            }
+            else
+            {
+                if (manager.history == null) {
+                    manager.history = new ObservableCollection<History>();
+                }
+                (mylist.SelectedItem as Product).quantity = newQuantity;
+                History temp = new History((mylist.SelectedItem as Product).name, newQuantity, total.Text);
+                manager.history.Add(temp);
+                clearScreen();
+            }
         }
+        async void Manager_Clicked(System.Object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new ManagerPage(manager));
+        }
+
     }
 }

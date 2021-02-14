@@ -7,7 +7,9 @@ namespace CashOut
     {
         public string name { get; set; }
 
-        private int _quantity;
+        private int _quantity { get; set; }
+
+        public double price { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -23,10 +25,8 @@ namespace CashOut
                     }
                 }
             }
-
         }
 
-        public double price { get; set; }
 
         public Product()
         {

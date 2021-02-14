@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CashOut.Restock">
+    <ContentPage.Content>
+                 <StackLayout>
+
+<Entry x:Name="enteredQuantity" Placeholder="Enter new quantity" Keyboard="Numeric"/>
+
+<Button Text="Restock" Clicked="restockClicked"/>
+<Button Text="Cancel" Clicked="cancelClicked" />
+
+        <ListView x:Name="mylist" ItemsSource="{Binding mylist}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding name}" TextColor="Black" ></Label>
+                            <Label Text="{Binding price}"  TextColor="Black"></Label>
+                            <Label Text="{Binding quantity}"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+   
+
+                 </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
